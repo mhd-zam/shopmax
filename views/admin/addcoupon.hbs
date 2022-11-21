@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ace98fed36.js" crossorigin="anonymous"></script>
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="nav-header">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="images/logo-text.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+    {{>adminheader}}
+    <div class="container">
+        <div class="col-md-12 ">
+            <div class="contract" style="margin: 30%; margin-top: 15%;">
+                <h1 style="text-align: center;">Add Coupon</h1>
+                <form id="coupon">
+                    <div class="form-group">
+                        <input type="text"  name="Couponcode" class="form-control" placeholder="Coupon code" oninput="this.value = this.value.toUpperCase()"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" name="Expirydate" class="form-control" placeholder="Expiry date">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="Percentage" id="discount" oninput="check()" class="form-control" placeholder="Offer Percentage">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="MinimumAmt" class="form-control" placeholder="Minimum Amt">
+                    </div>
+                     <div class="form-group">
+                        <input type="number" name="MaximumAmt" class="form-control" placeholder="Maximum Amt">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Coupon</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+    <script src="js/addcoupon.js"></script>
+    <script>
+    function check(){
+     let value=document.getElementById('discount').value
+     if(value>100){
+      document.getElementById('discount').value=0
+     }
+    }
+    </script>
+  
+   
+</body>
+
+</html>

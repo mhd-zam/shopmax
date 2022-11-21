@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+     <script src="https://kit.fontawesome.com/ace98fed36.js" crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet">
+    
+</head>
+
+<body class="h-100">
+    
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+     <div class="nav-header">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="images/logo-text.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+
+    
+         {{>adminheader}}
+
+
+   <div class="container">
+    <div class="col-md-12 ">
+      <div class="contract" style="margin: 30%; margin-top: 15%;">
+        <h1 style="text-align: center;">Edit category</h1>
+        <form action="/admin/editcategory/{{data._id}}" method="post">
+          <div class="form-group">
+            <input type="text" name="category" id="category"  oninput="change()" class="form-control" value='{{data.category}}' />
+          </div>
+          <div class="form-group">
+            <input type="text" name="discount" class="form-control" id="discount" oninput="check()" value={{data.discount}} placeholder="category ">
+          </div>
+          <button type="submit" class="btn btn-primary">Edit category</button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+    
+
+    
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+    <script>
+     function check(){
+     let value=document.getElementById('discount').value
+     if(value>100){
+      document.getElementById('discount').value=0
+     }
+     }
+
+
+
+      function change(){
+       let string=document.getElementById('category').value;
+       let replace=string.replace(/\s/,'')
+       function capitelize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1)
+       }
+       replace=capitelize(replace)
+       document.getElementById('category').value=replace
+        }
+    </script>
+</body>
+</html>

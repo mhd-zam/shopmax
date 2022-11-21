@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ace98fed36.js" crossorigin="anonymous"></script>
+    <style>
+        #eye {
+            float: right;
+        }
+
+        #eye:hover {
+            cursor: pointer;
+            color: blueviolet;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        {{>adminheader}}
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="refresh" class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th>
+                                                <th>Product</th>
+                                                <th>Category</th>
+                                                <th>Price</th>
+                                                <th>Qty</th>
+                                                <th>Total Amount</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        {{#each order}}
+                                        <tbody>
+                                            <td> <img style="width:200px ;"
+                                                    src="/product/{{this.orderdetails.imagefileName.[0]}}" alt=""
+                                                    srcset=""></td>
+                                            <td>{{this.orderdetails.product}}</td>
+                                            <td>{{this.orderdetails.category}}</td>
+                                            <td>{{this.orderdetails.offerprice}}</td>
+                                            <td>{{this.qty}}</td>
+                                            <td>{{this.stotal}}</td>
+                                            <td>{{this.status}}</td>
+                                            <td>
+                                                {{#if this.cancelled}}
+
+                                                {{else}}
+                                                {{#if this.refund}}
+
+                                                <button class="btn btn-primary"
+                                                    onclick="refund('{{this.stotal}}','{{this.userid}}','{{this.pid}}','{{this._id}}','{{this.orderdetails.product}}','{{this.qty}}')"
+                                                    type="button">Refund</button>
+                                                {{else}}
+                                                {{#if this.delivered}}
+
+                                                {{else}}
+
+                                                {{#if this.refundapproved}}
+
+
+                                                {{else}}
+
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                                        id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        {{this.status}}
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        <button class="dropdown-item"
+                                                            onclick="change('{{this._id}}','Delivered','{{this.pid}}')"
+                                                            type="button">Delivered</button>
+                                                        <button class="dropdown-item"
+                                                            onclick="change('{{this._id}}','Shipped','{{this.pid}}')"
+                                                            type="button">Shipped</button>
+                                                        <button class="dropdown-item"
+                                                            onclick="change('{{this._id}}','cancelled','{{this.pid}}')"
+                                                            type="button">Cancel</button>
+                                                        {{/if}}
+                                                        {{/if}}
+
+
+                                                        {{/if}}
+
+                                                        {{/if}}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tbody>
+                                        {{/each}}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a>
+                    2018</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/change.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function refund(price, userid, productid, orderid,productname,quantity) {
+            $.ajax({
+                url: '/admin/refund',
+                type: 'post',
+                data: { offerprice: price, id: userid, pid: productid, oid: orderid,productname,quantity},
+                success: (response) => {
+                    swal("Refund success").then(() => {
+                        $("#refresh").load(window.location.href + " #refresh");
+                    })
+
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

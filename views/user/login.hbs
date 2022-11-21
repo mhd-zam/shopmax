@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animated Login Form</title>
+	<link rel="stylesheet" type="text/css" href="/user/stylesheet/login.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	
+	<div class="container">
+		<img class="img" src="/user/images/loginpic.webp" alt="" srcset="">
+		<div class="login-content">
+			<form onsubmit="return validate()" action="/login" method="post">
+				<img  src="/user/images/sitelogo.jpg">
+				<h2 class="title">Login</h2>
+				<span style="color: red;">{{error}}</span>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="text" id="name" class="input" name="pname" value="7012324119" placeholder="Phonenumber">
+					    <span id="error1" style="color: red;font-size: x-small;float: left; "></span>
+           		   </div>
+					
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<input type="text" id="password" class="input" value="Shopmax@123" name="password" placeholder="Password">
+						<span id="error2" style="color: red;font-size: x-small;float: left; "></span>
+            	   </div>
+            	</div>
+            	<input type="submit" class="btn" value="Login">
+				<span>or</span> 
+				<a href="/otp-phone" class="btn" style="text-align: center;padding-top:3%;color: white;">OTP Login</a>
+				<div>
+					<p style="font-size: smaller;" >Dont have account? <a style="font-size: smaller;float:right;margin-right: 15%;" href="/signup" class="text-primary">Sign Up</a></p>
+
+				</div>
+            </form>
+			
+        </div>
+		
+    </div>
+</body>
+</html>

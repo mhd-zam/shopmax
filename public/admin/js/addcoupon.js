@@ -1,0 +1,11 @@
+$('#coupon').submit((e)=>{
+    e.preventDefault()
+    $.ajax({
+        url:'/admin/addcoupon',
+        type:'post',
+        data:$('#coupon').serialize(),
+        success:(response)=>{
+            location.href='/admin/coupon'
+        }
+    })
+})

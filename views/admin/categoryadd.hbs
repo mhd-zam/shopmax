@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+     <script src="https://kit.fontawesome.com/ace98fed36.js" crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet">
+    
+</head>
+
+<body class="h-100">
+    
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+     <div class="nav-header">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="images/logo-text.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+
+    
+         {{>adminheader}}
+
+
+    <div class="login-form-bg h-100 ">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content" style="margin-left: 30%; margin-bottom:15% ;">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                <a class="text-center" href="index.html"> <h4>Add category</h4></a>
+                                <p style="text-align: center;color: red;">{{err}}</p>
+        
+                                <form class="mt-5 mb-5 login-input" method="post" action="/admin/addcategory">
+                                    <div class="form-group">
+                                        <input type="text" name="category" id="category" class="form-control" placeholder="Category Name" oninput="change()"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number"hidden readonly value="0" name="discount" class="form-control" placeholder="Discount percentage">
+                                    </div>
+                                    <input type="submit" class="w-100 btn btn-primary" value="Add Category">
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+    <script>
+        function change(){
+       let string=document.getElementById('category').value;
+       function capitelize(str){
+        return str.charAt(0).toUpperCase() + str.slice(1)
+       }
+       string=capitelize(string)
+       document.getElementById('category').value=string
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

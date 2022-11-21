@@ -1,0 +1,113 @@
+<div class="site-navbar  py-2">
+  <div class="search-wrap">
+    <div class="container">
+      <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+      <form action="#" method="post">
+        <input type="text" class="form-control" oninput="search()"  id="k"  placeholder="Search... ">
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="logo">
+        <div class="site-logo">
+          <a href="/" class="js-logo-clone">ShopMax</a>
+        </div>
+      </div>
+      <div class="main-nav d-none d-lg-block">
+        <nav class="site-navigation " role="navigation">
+          <ul class="site-menu js-clone-nav d-none d-lg-block">
+            <li class="has-children ">
+              <a href="/">Home</a>
+            </li>
+
+            <li onclick="colour()" class=""><a id="shop" href="/shop">Shop</a></li>
+            <li class="cat"  data-filter="Men"><a style="cursor: pointer;">Men</a> 
+            </li>
+             <li class="cat" data-filter="Women" ><a style="cursor: pointer;" >Women</a> 
+            </li>
+             <li class="cat" data-filter="Shoes"><a style="cursor: pointer;" >Shoes</a> 
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="icons">
+        <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+        <a href="/wishlist" class="icons-btn d-inline-block"><span class="icon-heart-o"></span></a>
+        <a href="/cart" class="icons-btn d-inline-block bag">
+          <span class="icon-shopping-bag"></span>
+          <span class="number">2</span>
+        </a>
+        <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
+            class="icon-menu"></span></a>
+      </div>
+      <div class="dropdown show">
+        <button class="btn btn-dark dropdown-toggle" style=" color:white;background-color: black; border-style: none;"
+          href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          {{#if user}}
+          {{user}}
+          {{else}}
+          user
+          {{/if}}
+        </button>
+        <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="/userprofile"><i class="fa-solid fa-user"></i> My Profile</a>
+          <a class="dropdown-item" href="/order"><i class="fa-brands fa-first-order-alt"></i> Orders</a>
+          {{#if user}}
+          <a class="dropdown-item" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+          {{else}}
+          <a class="dropdown-item" href="/login"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 10px;
+  }
+
+  .search_input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+  }
+
+  .searchbar:hover>.search_input {
+    padding: 0 10px;
+    width: 220px;
+    caret-color: red;
+    transition: width 0.4s linear;
+  }
+
+  .searchbar:hover>.search_icon {
+    background: white;
+    color: #e74c3c;
+  }
+
+  .search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    color: white;
+    text-decoration: none;
+  }
+</style>

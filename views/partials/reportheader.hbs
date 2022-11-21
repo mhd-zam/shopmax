@@ -1,0 +1,38 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <form id="form1" class="d-flex justify-content-center " action="/admin/dailysales" method="get">
+                   <label for="daily" style="color:darkblue ;">filter by day</label>
+                    <input style="width: 100%; height: 30px;" name="daily" onchange="call('form1')" type="date" />
+                </form>
+            </td>
+            <td>
+                <form id="form2" class="d-flex justify-content-center" action="/admin/monthlysales" method="get">
+                 <label for="monthly" style="color:darkblue ;">filter by month</label>
+                    <input value="monthly" onchange="call('form2')" name="monthly" style="width: 100%;  height: 30px;"
+                        type="month" />
+                </form>
+            </td>
+            <td>
+                <form id="form3" class="d-flex justify-content-center" action="/admin/yearlysales" method="get">
+                 <label for="year" style="color:darkblue ;">filter by year</label>
+                    <select name="year" onchange="call('form3')" style="width:100%; height: 30px;">
+                        <option value="0">Year</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

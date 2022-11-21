@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Product Detail</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+
+	<link rel="icon" type="image/png" href="user/images/icons/favicon.png" />
+	<!--===============================================================================================-->
+
+	{{!--
+	<link rel="stylesheet" type="text/css" href="user/vendor/bootstrap/css/bootstrap.min.css"> --}}
+	<!--===============================================================================================-->
+	{{!--
+	<link rel="stylesheet" type="text/css" href="user/fonts/font-awesome-4.7.0/css/font-awesome.min.css"> --}}
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="user/fonts/iconic/css/material-design-iconic-font.min.css">
+
+	<!--===============================================================================================-->
+	{{!--
+	<link rel="stylesheet" type="text/css" href="user/fonts/linearicons-v1.0.0/icon-font.min.css"> --}}
+	<!--===============================================================================================-->
+	{{!--
+	<link rel="stylesheet" type="text/css" href="user/vendor/animate/animate.css"> --}}
+	<!--===============================================================================================-->
+	{{!--
+	<link rel="stylesheet" type="text/css" href="user/vendor/css-hamburgers/hamburgers.min.css"> --}}
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="user/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="user/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	{{!--
+	<link rel="stylesheet" type="text/css" href="user/vendor/daterangepicker/daterangepicker.css"> --}}
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="user/vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="user/vendor/MagnificPopup/magnific-popup.css">
+	<!--===============================================================================================-->
+	{{!--
+	<link rel="stylesheet" type="text/css" href="user/vendor/perfect-scrollbar/perfect-scrollbar.css"> --}}
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/user/stylesheet/util.css">
+	<link rel="stylesheet" type="text/css" href="/user/stylesheet/main.css">
+	<!--===============================================================================================-->
+
+
+	<link rel="stylesheet" href="/user/stylesheet/bootstrap.min.css">
+	<link rel="stylesheet" href="/user/stylesheet/magnific-popup.css">
+	<link rel="stylesheet" href="/user/stylesheet/jquery-ui.css">
+	<link rel="stylesheet" href="/user/stylesheet/owl.carousel.min.css">
+	<link rel="stylesheet" href="/user/stylesheet/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/user/stylesheet/aos.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+	<link rel="stylesheet" href="/user/fonts/icomoon/style.css">
+	<script src="https://kit.fontawesome.com/ace98fed36.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/user/stylesheet/style.css">
+
+
+
+</head>
+
+<body class="animsition">
+	<div class="site-wrap">
+		{{>userheader}}
+		<section class="sec-product-detail bg0 p-t-65 p-b-60">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-7 p-b-30">
+						<div class="p-l-25 p-r-30 p-lr-0-lg">
+							<div class="wrap-slick3 flex-sb flex-w">
+								<div class="wrap-slick3-dots"></div>
+								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+								<div class="slick3 gallery-lb  ">
+									<div class="item-slick3" data-thumb="product/{{data.imagefileName.[0]}}">
+										<div class="wrap-pic-w pos-relative">
+											<img src="product/{{data.imagefileName.[0]}}" alt="IMG-PRODUCT">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="product/{{data.imagefileName.[0]}}">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="item-slick3" data-thumb="product/{{data.imagefileName.[1]}}">
+										<div class="wrap-pic-w pos-relative">
+											<img src="product/{{data.imagefileName.[1]}}">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="product/{{data.imagefileName.[1]}}">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="item-slick3" data-thumb="product/{{data.imagefileName.[2]}}">
+										<div class="wrap-pic-w pos-relative">
+											<img src="product/{{data.imagefileName.[2]}}" alt="IMG-PRODUCT">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="product/{{data.imagefileName.[2]}}">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-5 p-b-30">
+						<div class="p-r-50 p-t-5 p-lr-0-lg">
+							<h4 class="mtext-105 cl2 js-name-detail p-b-14" style="font-weight: 700;">
+								{{data.product}}
+							</h4>
+							<span style="color: cadetblue;font-weight: 600;"
+								class="mtext-106 cl2">₹<s>{{data.price}}</s>
+
+							</span>
+							<span style="color: cadetblue;font-weight: 600;" class="mtext-106 cl2">
+								{{data.offerprice}}
+							</span>
+
+							<p class="stext-102 cl3 p-t-23"
+								style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;">
+
+							<p>Overview
+								Fashioned for the ultimate comfort, and unique style, this casual shirt is designed with
+								checks print, classic full sleeves, and spread collar. Get an uplifted smart casual
+								appearance.
+								Type : Smart Casual
+								Design : Checked
+								Neckline : Spread collar
+								Style : Casual
+								Sleeve Length : Full Sleeves
+								Fabric : Cotton
+								Fit : Slim Fit
+							</p>
+
+							<!--  -->
+							<div class="p-t-33">
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-204 flex-w flex-m respon6-next">
+
+										{{#if user}}
+										{{#if check}}
+										<button onclick="cart('{{data._id}}')"
+											class="flex-c-m stext-101 cl0 size-101 bg1 bg-success bor1 hov-btn1 p-lr-15 trans-04 ">Add
+											To Cart</button>
+										{{else}}
+										<a href="/cart"
+											class="flex-c-m stext-101 cl0 size-101 bg1 bg-success bor1 hov-btn1 p-lr-15 trans-04 ">Go
+											To Cart</a>
+										{{/if}}
+										{{else}}
+										<a href="/login"
+											class="flex-c-m stext-101 cl0 size-101 bg1 bg-success bor1 hov-btn1 p-lr-15 trans-04 ">Add
+											To Cart</a>
+										{{/if}}
+									</div>
+									<div id="refresh">
+										{{#if user}}
+										{{#if wishlistcheck}}
+										<i class="fa-solid fa-heart text-danger " id="love1"
+											onclick="fav1('{{data._id}}')"
+											style="cursor: pointer;font-size:x-large;"></i>
+										{{else}}
+										<i class="fa-regular fa-heart " id="love" onclick="fav('{{data._id}}')"
+											style="cursor: pointer;font-size:x-large;"></i>
+										{{/if}}
+										{{/if}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+			<!-- Footer -->
+
+			<footer class="site-footer custom-border-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+							<h3 class="footer-heading mb-4">Promo</h3>
+							<a href="#" class="block-6">
+								<img id="footer" src="/user/images/about_1.jpg" alt="Image placeholder"
+									class="img-fluid rounded mb-4">
+								<h3 class="font-weight-light  mb-0">Finding Your Perfect Shirts This Summer</h3>
+								<p>Promo from July 15 &mdash; 25, 2019</p>
+							</a>
+						</div>
+						<div class="col-lg-5 ml-auto mb-5 mb-lg-0">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="footer-heading mb-4">Quick Links</h3>
+								</div>
+								<div class="col-md-6 col-lg-4">
+									<ul class="list-unstyled">
+										<li><a href="#">Sell online</a></li>
+										<li><a href="#">Features</a></li>
+										<li><a href="#">Shopping cart</a></li>
+										<li><a href="#">Store builder</a></li>
+									</ul>
+								</div>
+								<div class="col-md-6 col-lg-4">
+									<ul class="list-unstyled">
+										<li><a href="#">Mobile commerce</a></li>
+										<li><a href="#">Dropshipping</a></li>
+										<li><a href="#">Website development</a></li>
+									</ul>
+								</div>
+								<div class="col-md-6 col-lg-4">
+									<ul class="list-unstyled">
+										<li><a href="#">Point of sale</a></li>
+										<li><a href="#">Hardware</a></li>
+										<li><a href="#">Software</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg-3">
+							<div class="block-5 mb-5">
+								<h3 class="footer-heading mb-4">Contact Info</h3>
+								<ul class="list-unstyled">
+									<li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
+									<li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+									<li class="email">emailaddress@domain.com</li>
+								</ul>
+							</div>
+
+							<div class="block-7">
+								<form action="#" method="post">
+									<label for="email_subscribe" class="footer-heading">Subscribe</label>
+									<div class="form-group">
+										<input type="text" class="form-control py-4" id="email_subscribe"
+											placeholder="Email">
+										<input type="submit" class="btn btn-sm btn-primary" value="Send">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="row pt-5 mt-5 text-center">
+						<div class="col-md-12">
+							<p>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;
+								<script>document.write(new Date().getFullYear());</script> All rights reserved | This
+								template
+								is made with <i class="icon-heart" aria-hidden="true"></i> by <a
+									href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</footer>
+	</div>
+
+	<!--===============================================================================================-->
+	<script src="user/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src='user/js/jquery.zoom.js'></script>
+
+
+
+	<script>
+		$(document).ready(function () {
+			$('img')
+				.wrap('<span style="display:inline-block"></span>')
+				.css('display', 'block')
+				.parent()
+				.zoom({ magnify: 2 });
+			$('#footer').trigger('zoom.destroy');
+		});
+	</script>
+
+	{{!--
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+	<script>
+		$('#zoom').elevateZoom({ scrollZoom: true });
+	</script> --}}
+
+	<!--===============================================================================================-->
+
+	<script src="user/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/bootstrap/js/popper.js"></script>
+	<script src="user/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function () {
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/daterangepicker/moment.min.js"></script>
+	<script src="user/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/slick/slick.min.js"></script>
+	<script src="user/js/slick-custom.js"></script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/parallax100/parallax100.js"></script>
+	<script>
+		$('.parallax100').parallax100();
+	</script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function () { // the containers for all your galleries
+			$(this).magnificPopup({
+				delegate: 'a', // the selector for gallery item
+				type: 'image',
+				gallery: {
+					enabled: true
+				},
+				mainClass: 'mfp-fade'
+			});
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/isotope/isotope.pkgd.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function () {
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function () {
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function () {
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function () {
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function () {
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function () {
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+
+	</script>
+	<!--===============================================================================================-->
+	<script src="user/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function () {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function () {
+				ps.update();
+			})
+		});
+	</script>
+	<!--===============================================================================================-->
+
+	<script src="user/js/main3.js"></script>
+	<script src="user/js/cart.js"></script>
+	<script src="user/js/wishlist.js"></script>
+
+</body>
+
+</html>
