@@ -53,13 +53,13 @@ const verify = (req, res, next) => {
   if (req.session.adminlog) {
     res.redirect("/admin/");
   } else {
-    res.redirect("/admin/login");
+    next()
   }
 };
 
 router.get("/", loginverify, home);
 
-router.route("/login").get(login).post(loginpost);
+router.route("/login").get(verify,login).post(loginpost);
 
 router.get("/dailysales", loginverify, dailysales);
 

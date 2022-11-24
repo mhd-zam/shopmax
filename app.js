@@ -15,8 +15,12 @@ const partialspath=path.join(__dirname,'views/partials')
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
-hbs.registerPartials( partialspath)
+hbs.registerPartials(partialspath)
 
+app.use((req,res,next)=>{
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
+  next()
+})
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
