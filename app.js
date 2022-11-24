@@ -7,7 +7,7 @@ const session = require('express-session')
 const userRouter = require('./routes/user');
 const adminRouter = require('./routes/admin');
 const db=require('./config/connection')
-const hbs= require('hbs')
+const hbs = require('hbs')
 const app = express();
 
 const partialspath=path.join(__dirname,'views/partials')

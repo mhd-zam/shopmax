@@ -32,7 +32,7 @@ module.exports = {
           },
           { $group: { _id: "$date", sum: { $sum: 1 } } },
           { $sort: { _id: 1 } },
-          { $project: { _id: 1, sum: 1 } },{$skip:5},{$limit:8},
+          { $project: { _id: 1, sum: 1 } },{$skip:10}
         ])
         .toArray();
       console.log(data);
@@ -70,7 +70,6 @@ module.exports = {
           { $group: { _id: "products", sum: { $sum: 1 } } },
         ])
         .toArray();
-      console.log(total);
 
       resolve(total);
     });

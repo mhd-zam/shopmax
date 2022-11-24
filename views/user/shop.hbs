@@ -27,22 +27,7 @@
 
   {{>userheader}}
     
-    <div class="site-blocks-cover inner-page" data-aos="fade">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ml-auto order-md-2 align-self-start">
-            <div class="site-block-cover-content">
-            <h2 class="sub-title">{{banner.title}}</h2>
-            <h1>{{banner.description}}</h1>
-            <p><a href="#" class="btn btn-black rounded-0">Shop Now</a></p>
-            </div>
-          </div>
-          <div class="col-md-6 order-1 align-self-end">
-            <img src="/product/{{banner.imagefile}}" alt="Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>
+  
 
 
 
@@ -120,17 +105,17 @@
               </ul>
             </div>
 
-            <div class="border p-4 rounded mb-4">
+            {{!-- <div class="border p-4 rounded mb-4">
               <div class="mb-4">
                 {{!-- <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
                 <div id="slider-range" class="border-primary"></div>
                 <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" /> --}}
               </div>
 
-              <div class="mb-4">
+              {{!-- <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
                 <label for="s_sm" class="d-flex">
-                  {{!-- <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
+                  <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
                 </label>
                 <label for="s_md" class="d-flex">
                   <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium (1,282)</span>
@@ -140,7 +125,7 @@
                 </label>
               </div> --}}
 
-              <div class="mb-4">
+              {{!-- <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
                 <a href="#" class="d-flex color-item align-items-center" >
                   <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red (2,429)</span>
@@ -154,9 +139,9 @@
                 <a href="#" class="d-flex color-item align-items-center" >
                   <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purple (1,075)</span>
                 </a>
-              </div>
+              </div> --}}
 
-            </div>
+            </div> --}}
           </div>
         </div>
 
@@ -278,6 +263,8 @@
   <script src="/user/js/aos.js"></script>
   <script src="/user/js/main.js"></script>
   <script src="/user/js/filter.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="/user/js/count.js"></script>
 
 
 

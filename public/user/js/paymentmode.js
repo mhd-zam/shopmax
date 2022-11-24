@@ -61,7 +61,6 @@ function razorpayment(order) {
     rzp1.open();
 }
 function verifypayment(payment, order) {
-    alert(order)
     $.ajax({
         url: '/paymentverify',
         data: {

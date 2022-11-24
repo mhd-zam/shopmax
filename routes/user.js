@@ -1,21 +1,22 @@
 var express = require("express");
 var router = express.Router();
-var verification = require("../middleware/verification");
-var otp = require("../middleware/phoneotp");
-var home = require("../middleware/home");
-var shop = require("../middleware/shop");
-var shopsingle = require("../middleware/shopsingle");
-var order = require("../middleware/order");
-var payment = require("../middleware/payment");
+var verification = require("../usercontrollers/verification");
+var otp = require("../usercontrollers/phoneotp");
+var home = require("../usercontrollers/home");
+var shop = require("../usercontrollers/shop");
+var shopsingle = require("../usercontrollers/shopsingle");
+var order = require("../usercontrollers/order");
+var payment = require("../usercontrollers/payment");
 var userhelper = require("../helpers/users-helper");
-var cart = require("../middleware/user-cart");
-var check = require("../middleware/checkout");
+var cart = require("../usercontrollers/user-cart");
+var check = require("../usercontrollers/checkout");
 const session = require("express-session");
 const paypal = require("../helpers/paypal");
-const profile = require("../middleware/profile");
+const profile = require("../usercontrollers/profile");
 const couponhelper = require("../helpers/couponhelper");
 const userwishlist = require("../helpers/userwishlist");
 const useracct = require("../helpers/useracct");
+const pagination = require("../usercontrollers/pagination");
 
 /* GET home page. */
 let verifyauth = (req, res, next) => {
@@ -27,7 +28,7 @@ let verifyauth = (req, res, next) => {
 };
 
 let insideverify = (req, res, next) => {
-  req.session.returnToUrl = req.originalUrl
+  req.session.returnToUrl = req.originalUrl;
   if (req.session.log) {
     next();
   } else {
@@ -73,32 +74,32 @@ router.route("/shop-single").get(shopsingle.shopsingle);
 router.route("/addtocart").get(insideverify, cart.addtocart);
 
 /*wishlist*/
-router.route('/addwishlist').post((req, res) => {
-  userwishlist.addwishlist(req.session.userdata._id, req.query.id)
-  res.json({status:true})
-})
-  
-router.route('/removewishlist').post((req, res) => {
-  userwishlist.removewishlist(req.session.userdata._id, req.query.id)
-  res.json({status:true})
-})
-router.route('/wishlist').get(insideverify,async(req, res) => {
-  let orderdetail = await userwishlist.getwishlist(req.session.userdata._id)
-  
+router.route("/addwishlist").post((req, res) => {
+  userwishlist.addwishlist(req.session.userdata._id, req.query.id);
+  res.json({ status: true });
+});
+
+router.route("/removewishlist").post((req, res) => {
+  userwishlist.removewishlist(req.session.userdata._id, req.query.id);
+  res.json({ status: true });
+});
+router.route("/wishlist").get(insideverify, async (req, res) => {
+  let orderdetail = await userwishlist.getwishlist(req.session.userdata._id);
+
   console.log(orderdetail);
-  
-  res.render('user/wishlist', { orderdetail })
-})
+
+  res.render("user/wishlist", { orderdetail });
+});
 
 //user page//
 router.route("/userprofile").get(insideverify, profile.userpage);
 
 router.route("/updateuser").post(profile.updateuser);
 
-router.route("/wallet").get(insideverify,async (req, res) => {
-  let userid=req.session.userdata._id
-  let wallet = await useracct.userwallet(userid)
-  res.render("user/wallet",{wallet});
+router.route("/wallet").get(insideverify, async (req, res) => {
+  let userid = req.session.userdata._id;
+  let wallet = await useracct.userwallet(userid);
+  res.render("user/wallet", { wallet });
 });
 
 router.route("/changepassword").post(profile.changepassword);
@@ -112,12 +113,12 @@ router
 /*coupon*/
 router.route("/checkcoupon").post((req, res) => {
   couponhelper
-    .testcoupon(req.body,req.session.userdata._id)
+    .testcoupon(req.body, req.session.userdata._id)
     .then((response) => {
       (response.status = true), res.json(response);
     })
     .catch((response) => {
-      res.json({ status: false,message:response.message });
+      res.json({ status: false, message: response.message });
     });
 });
 
@@ -132,6 +133,9 @@ router
   .get(insideverify, check.checkoutget)
   .post(check.checkoutpost);
 
+router.route("/cartcount").get(cart.cartcount)
+
+
 router
   .route("/payment")
   .get(insideverify, payment.paymentpage)
@@ -144,7 +148,7 @@ router.route("/paypalsuccess").get(paypal.paypalconfirmation, (req, res) => {
     res.redirect("/success");
   });
 });
-router.route('/editaddress').get(check.editaddress).post(check.seteditaddress)
+router.route("/editaddress").get(check.editaddress).post(check.seteditaddress);
 
 router.get("/success", cart.deletecart);
 
@@ -155,7 +159,7 @@ router.route("/return").get(order.returnstatus);
 
 router.route("/orderdetails/:id").get(insideverify, order.ordermain);
 
-router.route("/order").get(insideverify, order.orders);
+router.route("/order").get(insideverify, pagination.pagination, order.orders);
 
 router.route("/addaddress").post(order.addaddress);
 

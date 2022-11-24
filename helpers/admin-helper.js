@@ -16,9 +16,7 @@ module.exports = {
     });
   },
   createcategory: (item) => {
-    let replace = item.category.replace(/\s/g, '')
-    console.log(replace);
-    
+    let replace = item.category.trim()
     item.discount = parseInt(item.discount);
     return new Promise(async (resolve, reject) => {
       let check = await db
@@ -106,6 +104,7 @@ module.exports = {
   },
   addproduct: (product) => {
     return new Promise((resolve, reject) => {
+      product.stock = parseInt(product.stock)
       product.offerprice = parseInt(product.offerprice);
       product.price = parseInt(product.price);
       db.get()
@@ -191,6 +190,7 @@ module.exports = {
     });
   },
   updateproduct: (id, data) => {
+    data.stock=parseInt(data.stock)
     data.offerprice = parseInt(data.offerprice);
     data.price = parseInt(data.price);
     return new Promise((resolve, reject) => {
@@ -466,6 +466,41 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.get().collection(collections.ORDER).updateOne({ _id: ObjectID(oid), 'products.proid': ObjectID(pid) }, { $set: { 'products.$.status': 'refund approved' }, $inc: { total: -price } }).then(() => {
         resolve()
+      })
+    })
+  },
+  editbanner: (bannerid) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collection.BANNER).findOne({ _id: ObjectID(bannerid) }).then((response) => {
+        resolve(response)
+      })
+    })
+  },
+  editbannerwithout: (banner) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collections.BANNER).updateOne({ _id: ObjectID(banner.id) }, { $set: { title: banner.title, description: banner.description } }).then((response) => {
+        resolve(response)
+      })
+    })
+  },
+  updateoneimg: (banner, img) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collections.BANNER).updateOne({ _id: ObjectID(banner.id) }, { $set: {title: banner.title, description: banner.description, 'imagefile.0' : img } }).then((response) => {
+        resolve(response)
+      })
+    })
+  },
+  updatetwoimg: (banner, img) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collections.BANNER).updateOne({ _id: ObjectID(banner.id) }, { $set: {title: banner.title, description: banner.description, 'imagefile.0' : img[0],'imagefile.1' : img[1] } }).then((response) => {
+        resolve(response)
+      })
+    })
+  },
+  updateallimg: (banner, img) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collections.BANNER).updateOne({ _id: ObjectID(banner.id) }, { $set: {title: banner.title, description: banner.description, 'imagefile':img } }).then((response) => {
+        resolve(response)
       })
     })
   }

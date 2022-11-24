@@ -1,14 +1,12 @@
-const uploadFilesMiddleware = require("../middleware/multer");
-const db=require('../config/connection')
+const uploadFilesMiddleware = require("../usercontrollers/multer");
+const db = require("../config/connection");
 
-const { response } = require('../app');
+const { response } = require("../app");
 
-
-
-const multipleUpload = async (req, res,next) => {
+const multipleUpload = async (req, res, next) => {
   try {
     await uploadFilesMiddleware(req, res);
- 
+
     next();
     //  return res.send('success')
   } catch (error) {
@@ -22,5 +20,5 @@ const multipleUpload = async (req, res,next) => {
 };
 
 module.exports = {
-  multipleUpload: multipleUpload
+  multipleUpload: multipleUpload,
 };

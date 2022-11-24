@@ -102,6 +102,9 @@
         <form action="/admin/editproduct" class="col-md-6 " style="margin-left:30%;" method="post"
           enctype="multipart/form-data">
           <h1 style="text-align: center;">Edit Product</h1>
+        {{#each data}}
+        <input  type="text" hidden  id="{{this.category}}" value="{{this.discount}}">
+        {{/each}}
           <input type="text" name="id" hidden class="form-control" value="{{value._id}}">
           <div class="form-group">
             <label for="brand">Brand</label>
@@ -116,7 +119,7 @@
             <input type="text" name="description" class="form-control" value="{{value.description}}">
           </div>
 
-          <select name="category" class="custom-select custom-select-md mb-3">
+          <select name="category" onchange="find()" id="sel" class="custom-select custom-select-md mb-3">
             <option>{{value.category}}</option>
             {{#each data}}
             <option value={{this.category}}>{{this.category}}</option>
@@ -128,12 +131,17 @@
           </div>
           <div class="form-group">
             <label for="percentage">Percentage</label>
-            <input name="percentage" id="percentage" type="text" oninput="find()" class="form-control"
+            <input name="percentage" id="percentage" type="text"  oninput="find()" class="form-control"
               value="{{value.offerpercentage}}">
+          </div>
+          <div>
+            <div class="form-group">
+               <label for="stock">stock</label>
+            <input name="stock"  type="text"  class="form-control" value="{{value.stock}}" >
           </div>
           <div class="form-group">
             <label for="offerprice">offerprice</label>
-            <input name="offerprice" readonly type="text" id="offerprice" class="form-control"
+            <input name="offerprice" readonly type="text" id="offer" class="form-control"
               value="{{value.offerprice}}">
               <input  hidden type="text" id="dummy" class="form-control"
               value="{{value.offerprice}}">
@@ -193,10 +201,14 @@
   <script>
     function find() {
       let discount = parseInt(document.getElementById('percentage').value)
-      let offer = parseInt(document.getElementById('offerprice').value)
-      document.getElementById('offerprice').value = Math.round( offer - ((offer * discount) / 100)) 
-      let val = document.getElementById('offerprice').value
-      alert(typeof offer)
+      let category = document.getElementById('sel').value
+      let percentage = parseInt(document.getElementById(category).value)
+      let total = percentage + discount
+      let offer = parseInt(document.getElementById('price').value)
+      document.getElementById('offer').value = offer - ((offer * total) / 100)
+      if (discount >= 100 ) {
+        document.getElementById('offer').value = offer
+      }
     }
 
   </script>

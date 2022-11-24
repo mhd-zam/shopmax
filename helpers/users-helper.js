@@ -5,6 +5,7 @@ const { CURSOR_FLAGS } = require("mongodb");
 const { response } = require("express");
 var ObjectID = require("mongodb").ObjectId;
 let referralCodeGenerator = require("referral-code-generator");
+const { disabled } = require("../app");
 
 module.exports = {
   doSignup: (userdata) => {
@@ -213,7 +214,6 @@ module.exports = {
         .collection(collections.PRODUCT)
         .findOne({ _id: ObjectID(id) })
         .then((response) => {
-          console.log(response);
           resolve(response);
         });
     });
@@ -239,7 +239,9 @@ module.exports = {
               { $push: { product: cpro } }
             )
             .then(() => {
-              resolve();
+              db.get().collection(collections.PRODUCT).updateOne({ _id: ObjectID(id) }, { $inc: { stock: -1 } }).then(() => {
+                resolve();
+              })
             });
         } else {
           resolve();
@@ -259,8 +261,9 @@ module.exports = {
       }
     });
   },
-  removeproduct: (id, userid) => {
+  removeproduct: (id, userid,qty) => {
     return new Promise(async (resolve, reject) => {
+      qty=parseInt(qty)
       db.get()
         .collection(collections.CART)
         .updateOne(
@@ -268,9 +271,9 @@ module.exports = {
           { $pull: { product: { proid: ObjectID(id) } } }
         )
         .then((response) => {
-          console.log(response);
-
-          resolve();
+          db.get().collection(collections.PRODUCT).updateOne({ _id: ObjectID(id) }, { $inc: { stock: qty } }).then(() => {
+            resolve();
+          })
         });
     });
   },
@@ -462,6 +465,8 @@ module.exports = {
     });
   },
   checkoutdetail: (order, proid) => {
+    console.log(order.Typeofpayment);
+    
     order.total = parseInt(order.total);
     proid.forEach((value) => {
       value.status = "order placed";
@@ -469,8 +474,7 @@ module.exports = {
     console.log(proid);
 
     return new Promise((resolve, reject) => {
-      let paymentstatus =
-        order.Typeofpayment == "COD" || "WALLET" ? "order placed" : "pending";
+     let paymentstatus = order.Typeofpayment == "COD" ? "order placed" : "pending";
       let orderdetail = {
         userid: ObjectID(order.userid),
         deliverydetails: {
@@ -619,13 +623,18 @@ module.exports = {
       }
     });
   },
-  changequantity: ({ cid, pid, count, quantity }) => {
+  changequantity:  ({ cid, pid, count, quantity }) => {
     console.log(quantity);
     console.log(count);
-
-    count = parseInt(count);
-    return new Promise((resolve, reject) => {
+    quantity = parseInt(quantity)
+    count=parseInt(count)
+    return new Promise(async(resolve, reject) => {
+    let product = await db.get().collection(collections.PRODUCT).findOne({ _id: ObjectID(pid) })
+    let stockcount = product.stock
+    let increment = -(count)
+      
       if (quantity == 1 && count == -1) {
+        db.get().collection(collections.PRODUCT).updateOne({_id: ObjectID(pid)},{$inc:{stock:increment}})
         db.get()
           .collection(collections.CART)
           .updateOne(
@@ -636,7 +645,12 @@ module.exports = {
             resolve({ removed: true });
           });
       } else {
-        db.get()
+        if (stockcount <= 0 && count==1) {
+          let obj={pid:product._id,outofstock:true}
+          reject(obj)
+        } else {
+        db.get().collection(collections.PRODUCT).updateOne({_id: ObjectID(pid)},{$inc:{stock:increment}})
+          db.get()
           .collection(collections.CART)
           .updateOne(
             { _id: ObjectID(cid), "product.proid": ObjectID(pid) },
@@ -646,10 +660,12 @@ module.exports = {
             console.log(response);
             resolve(response);
           });
+        }
       }
+    
     });
   },
-  order: (uid) => {
+  order: (uid,firstindex,last) => {
     return new Promise(async (resolve, reject) => {
       let value = await db
         .get()
@@ -669,12 +685,21 @@ module.exports = {
               coupon: 1,
             },
           },
-          { $sort: { ordertime: -1 } },
+          { $sort: { ordertime: -1 } },{$skip:firstindex},{$limit:last}
         ])
         .toArray();
       resolve(value);
       // console.log(value);
     });
+  },
+  ordercount: (uid) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collections.ORDER).find({ userid: ObjectID(uid) }).count().then((response) => {
+        resolve(response)
+        
+      })
+    })
+    
   },
   findtotal: (userid) => {
     return new Promise(async (resolve, reject) => {
@@ -921,11 +946,11 @@ module.exports = {
         });
     });
   },
-  removeorder: () => {
+  removeorder: (uid) => {
     return new Promise((resolve, reject) => {
       try {
-        db.get().collection(collections.ORDER).deleteMany({ status: "pending" }).then(() => {
-          resolve()
+        db.get().collection(collections.ORDER).deleteMany({userid:ObjectID(uid),status: "pending"}).then((response) => {
+         resolve()
         })
         
       } catch (err){
@@ -961,6 +986,14 @@ module.exports = {
       resolve()
       })
     })
-  }
+  },
+  cartcount: (uid) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collections.CART).findOne({ user: ObjectID(uid) }).then((item) => {
+        let count = item.product.length
+       resolve(count)
+    })
+  })
+}
   
 };

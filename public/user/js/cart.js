@@ -7,7 +7,8 @@ function cart(proid) {
                 title: "Added to the cart!",
                 icon: "success",
             }).then(() => {
-                  location.reload()
+                cartnum()
+                $('#reload').load(window.location.href=' #reload')
               })
         }
     })

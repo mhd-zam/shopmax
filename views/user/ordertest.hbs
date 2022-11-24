@@ -5,26 +5,21 @@
   <title>ShopMax &mdash; Colorlib e-Commerce Template</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
   <link rel="stylesheet" href="/user/fonts/icomoon/style.css">
-
   <link rel="stylesheet" href="/user/stylesheet/bootstrap.min.css">
   <link rel="stylesheet" href="/user/stylesheet/magnific-popup.css">
   <link rel="stylesheet" href="/user/stylesheet/jquery-ui.css">
   <link rel="stylesheet" href="/user/stylesheet/owl.carousel.min.css">
   <link rel="stylesheet" href="/user/stylesheet/owl.theme.default.min.css">
-
-
   <link rel="stylesheet" href="/user/stylesheet/aos.css">
-
   <link rel="stylesheet" href="/user/stylesheet/style.css">
 
 </head>
 
 <body>
 
-  <div class="">
+  <div class="site-wrap">
 
     {{>userheader}}
 
@@ -36,46 +31,62 @@
         {{else}}
         <h1>Not Ordered anything yet?</h1>
         {{/if}}
-        <div class="col-md-12 ">
-          <h1>ORDERS</h1>
-          {{#each order}}
-          <div class="table card mt-5">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>OrderId</th>
-                  <th>Ship To</th>
-                  <th>Order Date</th>
-                  <th>paymentmethod</th>
-                  <th>Applied Coupon</th>
-                  <th>Total</th>
-                  <th>Order details</th>
+        <div class="col-md-12 col-12 ">
+          <div id="val2" class="site-blocks-table">
+            <h1>ORDERS</h1>
+            
+            <div class="table  mt-5">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>OrderId</th>
+                    <th>Ship To</th>
+                    <th>Order Date</th>
+                    <th>paymentmethod</th>
+                    <th>Applied Coupon</th>
+                    <th>Total</th>
+                    <th>Order details</th>
 
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="product-name">
-                    {{this._id}}
-                  </td>
-                  <td>
-                    {{this.deliverydetails.name}}<br>{{this.deliverydetails.phonenumber}}<br>{{this.deliverydetails.address}}<br>{{this.deliverydetails.state}},{{this.deliverydetails.pincode}}
-                  </td>
-                  <td>{{this.orderdate}}</td>
-                  <td>{{this.paymentmethod}}</td>
-                  <td>{{this.coupon.Couponcode
-                    }}</td>
-                  <td>{{this.total}}</td>
-                  <td><a href="/orderdetails/{{this._id}}" class="btn btn-primary height-auto btn-sm">order
-                      details</a></td>
-              </tbody>
-            </table>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each order}}
+                  <tr class="mt-3">
+                    <td class="product-name">
+                      {{this._id}}
+                    </td>
+                    <td>
+                      {{this.deliverydetails.name}}<br>{{this.deliverydetails.phonenumber}}<br>{{this.deliverydetails.address}}<br>{{this.deliverydetails.state}},{{this.deliverydetails.pincode}}
+                    </td>
+                    <td>{{this.orderdate}}</td>
+                    <td>{{this.paymentmethod}}</td>
+                    <td>{{this.coupon.Couponcode
+                      }}</td>
+                    <td>{{this.total}}</td>
+                    <td><a href="/orderdetails/{{this._id}}" class="btn btn-primary height-auto btn-sm">order
+                        details</a></td>
+                   </tr>  
+                   {{/each}}  
+                </tbody>
+              </table>
+            </div>
+            
           </div>
-          {{/each}}
         </div>
       </div>
     </div>
-
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item ">
+          <a class="page-link" id="pre"  href="/order?page={{prevpage.page}}"  >Previous</a>
+        </li>
+        {{#each pagenum}}
+        <li class="page-item "><a class="page-link page" href="/order?page={{this.page}}">{{this.page}}</a></li>
+       {{/each}}
+          <a class="page-link" id="next"   href="/order?page={{nextpage.page}}">Next</a>
+        </li>
+      </ul>
+    </nav>
 
     <footer class="site-footer custom-border-top">
       <div class="container">
@@ -155,6 +166,16 @@
       </div>
     </footer>
   </div>
+  <script>
+  let current = location.href
+        let item = document.querySelectorAll('a.page')
+        let length = item.length
+        for (i = 0; i < length; i++) {
+            if (item[i].href === current) {
+                item[i].className ='bg-primary page-link text-light'
+            }
+        }
+  </script>
   <script src="/user/js/jquery-3.3.1.min.js"></script>
   <script src="/user/js/jquery-ui.js"></script>
   <script src="/user/js/popper.min.js"></script>
@@ -165,6 +186,7 @@
   <script src="/user/js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="/user/js/cancel.js"></script>
+ <script src="/user/js/count.js"></script>
 </body>
 
 </html>

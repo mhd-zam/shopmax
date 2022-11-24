@@ -62,11 +62,11 @@
 
 </head>
 
-<body class="animsition">
+<body  class="animsition">
 	<div class="site-wrap">
 		{{>userheader}}
 		<section class="sec-product-detail bg0 p-t-65 p-b-60">
-			<div class="container">
+			<div  class="container">
 				<div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
@@ -112,7 +112,7 @@
 						</div>
 					</div>
 
-					<div class="col-md-6 col-lg-5 p-b-30">
+					<div   class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
 							<h4 class="mtext-105 cl2 js-name-detail p-b-14" style="font-weight: 700;">
 								{{data.product}}
@@ -142,20 +142,25 @@
 							</p>
 
 							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
+							<div  class="p-t-33">
+								<div class="flex-w flex-r-m p-b-10"  >
+									<div id="reload" class="size-204 flex-w flex-m respon6-next">
 
 										{{#if user}}
 										{{#if check}}
+										{{#if data.stockempty}}
+										<h2 style="color: RED;float: inline-start;">Out Of Stock</h2>
+										{{else}}
 										<button onclick="cart('{{data._id}}')"
 											class="flex-c-m stext-101 cl0 size-101 bg1 bg-success bor1 hov-btn1 p-lr-15 trans-04 ">Add
 											To Cart</button>
+										{{/if}}
 										{{else}}
 										<a href="/cart"
 											class="flex-c-m stext-101 cl0 size-101 bg1 bg-success bor1 hov-btn1 p-lr-15 trans-04 ">Go
 											To Cart</a>
 										{{/if}}
+
 										{{else}}
 										<a href="/login"
 											class="flex-c-m stext-101 cl0 size-101 bg1 bg-success bor1 hov-btn1 p-lr-15 trans-04 ">Add
@@ -392,10 +397,23 @@
 		});
 	</script>
 	<!--===============================================================================================-->
-
+	{{!--
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script> --}}
+	{{!--
+	<script src="/user/js/jquery-3.3.1.min.js"></script> --}}
+	<script src="/user/js/jquery-ui.js"></script>
+	<script src="/user/js/popper.min.js"></script>
+	<script src="/user/js/bootstrap.min.js"></script>
+	<script src="/user/js/owl.carousel.min.js"></script>
+	<script src="/user/js/jquery.magnific-popup.min.js"></script>
+	<script src="/user/js/aos.js"></script>
+	<script src="/user/js/main.js"></script>
 	<script src="user/js/main3.js"></script>
 	<script src="user/js/cart.js"></script>
 	<script src="user/js/wishlist.js"></script>
+   <script src="/user/js/count.js"></script>
 
 </body>
 

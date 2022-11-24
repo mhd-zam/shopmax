@@ -1,9 +1,18 @@
 /* Base */
+html,body{
+  margin: 0%;
+  padding: 0%;
+  overflow-x: hidden;
+}
+
 body {
   line-height: 1.7;
-  color: #8c92a0;
+  color: #717b92;
   font-weight: 300;
-  font-size: 16px; }
+  font-size: 16px;
+  }
+
+ 
 
 ::-moz-selection {
   background: #000;
@@ -240,7 +249,7 @@ a {
         padding: 10px 10px;
         text-transform: uppercase;
         letter-spacing: .05em;
-        color: #eeeff5;
+        color: #fcfcff;
         font-size: 15px;
         text-decoration: none !important; }
         .site-navbar .site-navigation .site-menu > li > a:hover {
@@ -328,7 +337,7 @@ a {
   right: 0;
   z-index: 2000;
   padding-top: 20px;
-  background: #fff;
+  background: rgb(0, 0, 0);
   height: calc(100vh);
   -webkit-transform: translateX(110%);
   -ms-transform: translateX(110%);
@@ -370,12 +379,12 @@ a {
       .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a {
         display: inline-block;
         text-transform: uppercase;
-        color: #25262a;
+        color: #eeeef0;
         letter-spacing: .2em;
         font-size: 20px;
         padding-left: 10px;
         padding-right: 10px;
-        border: 2px solid #25262a; }
+        border: 2px solid #eeeef0; }
         .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a:hover {
           text-decoration: none; }
   .site-mobile-menu .site-mobile-menu-body {
@@ -394,7 +403,7 @@ a {
       padding: 10px 20px;
       display: block;
       position: relative;
-      color: #212529; }
+      color: #f9fafc; }
       .site-mobile-menu .site-nav-wrap a:hover {
         color: #ee4266; }
     .site-mobile-menu .site-nav-wrap li {

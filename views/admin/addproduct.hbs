@@ -9,7 +9,8 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  {{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+  {{!--
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -19,64 +20,64 @@
   <link href="css/style.css" rel="stylesheet">
   <style>
     .g-height-50 {
-        height: 50px;
+      height: 50px;
     }
 
     .g-width-50 {
-        width: 50px !important;
+      width: 50px !important;
     }
 
     @media (min-width: 0) {
-        .g-pa-30 {
-            padding: 2.14286rem !important;
-        }
+      .g-pa-30 {
+        padding: 2.14286rem !important;
+      }
     }
 
     .g-bg-secondary {
-        background-color: #fafafa !important;
+      background-color: #fafafa !important;
     }
 
     .u-shadow-v18 {
-        box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.15);
     }
 
     .g-color-gray-dark-v4 {
-        color: #777 !important;
+      color: #777 !important;
     }
 
     .g-font-size-12 {
-        font-size: 0.85714rem !important;
+      font-size: 0.85714rem !important;
     }
 
     .media-comment {
-        margin-top: 20px
+      margin-top: 20px
     }
 
     .singleImageCanvasContainer {
-        overflow: hidden;
-        height: 350px;
-        width: 30%;
-        display: inline-block;
-        position: relative;
-        padding-right: 0px;
-        margin-right: 15px;
-        border: 2px solid #dfdfdf;
-        margin-bottom: 10px;
-        padding: 4px;
-        border-radius: .25rem;
+      overflow: hidden;
+      height: 350px;
+      width: 30%;
+      display: inline-block;
+      position: relative;
+      padding-right: 0px;
+      margin-right: 15px;
+      border: 2px solid #dfdfdf;
+      margin-bottom: 10px;
+      padding: 4px;
+      border-radius: .25rem;
     }
 
     .singleImageCanvasContainer .singleImageCanvasCloseBtn {
-        position: absolute;
-        right: 0;
+      position: absolute;
+      right: 0;
     }
 
     .singleImageCanvasContainer .singleImageCanvas {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-</style>
+  </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
 
@@ -99,6 +100,9 @@
     <div class="col-md-12 ">
       <div class="contract" style="margin: 30%; margin-top: 15%;">
         <h1 style="text-align: center;">Add Product</h1>
+        {{#each data}}
+        <input  type="text" hidden  id="{{this.category}}" value="{{this.discount}}">
+        {{/each}}
         <form action="/admin/addproduct" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <input type="text" name="brand" class="form-control" placeholder="Brand Name">
@@ -109,32 +113,35 @@
           <div class="form-group">
             <input type="text" name="description" class="form-control" placeholder="Description">
           </div>
-
-          <select name="category" class="custom-select custom-select-md mb-3">
+            <div class="form-group">
+            <input name="stock"  type="text" id="" class="form-control" placeholder="stock quantity">
+          </div>
+          <div class="form-group">
+            <input name="price"  type="text" id="price" class="form-control" placeholder="Price">
+          </div>
+          <select name="category" onchange="find()" id="sel" class="custom-select custom-select-md mb-3" required >
             <option> Category</option>
             {{#each data}}
             <option value={{this.category}}>{{this.category}}</option>
             {{/each}}
           </select>
 
-
           <div class="form-group">
-            <input name="price" oninput="find()" type="text" id="price" class="form-control" placeholder="Price">
-          </div>
-          <div class="form-group">
-            <input id="percentage" oninput="find()" name="offerpercentage" value="0" type="number" class="form-control"
+            <label for="offerpercentage">product offer</label>
+            <input id="percentage" oninput="find()" readonly name="offerpercentage" value="0" type="number" class="form-control"
               placeholder="Offer percentage">
           </div>
           <div class="form-group">
             <div class="form-group">
+                <label for="offerprice">Offer price</label>
               <input name="offerprice" id="offer" readonly type="text" value="0" class="form-control"
                 placeholder="Offer Price">
             </div>
           </div>
           <div class=" mb-4">
             <label for="id_image">Image</label><br>
-            <input class="form-control" data-bs-toggle="modal" style="height: 25px;" name="image" data-bs-target="#exampleModal" type="file"
-              id="id_image" name="image" accept="image/*" multiple><br>
+            <input class="form-control" data-bs-toggle="modal" style="height: 25px;" name="image"
+              data-bs-target="#exampleModal" type="file" id="id_image" name="image" accept="image/*" multiple><br>
                       
           </div>
           {{!-- <div class="form-group">
@@ -144,9 +151,9 @@
           <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal"  tabindex="-10" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="exampleModal" tabindex="-10" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
-          <div class="modal-dialog modal-xl" style="max-width: 90% !important;"  role="document">
+          <div class="modal-dialog modal-xl" style="max-width: 90% !important;" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -277,12 +284,21 @@
 
   <script>
     function find() {
+      document.getElementById('percentage').readOnly = false;
       let discount = parseInt(document.getElementById('percentage').value)
-      if (discount > 100) {
-        document.getElementById('percentage').value = 0
-      }
+      let category = document.getElementById('sel').value
+      let percentage = parseInt(document.getElementById(category).value)
+      let total = percentage + discount
       let offer = parseInt(document.getElementById('price').value)
-      document.getElementById('offer').value = offer - ((offer * discount) / 100)
+      document.getElementById('offer').value = offer - ((offer * total) / 100)
+      if (discount >= 100 ) {
+        document.getElementById('offer').value = offer
+      }
+    }
+
+    function catdiscount() {
+
+
     }
 
   </script>

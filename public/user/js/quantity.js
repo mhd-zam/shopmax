@@ -23,9 +23,17 @@ function quantity(cartid, productid,value,pid,price) {
                     icon: "success",
                     button: "Ok",
                 }).then(() => {
-                    location.reload()
+                    $("#val2").load(window.location.href + " #val2");
                 })
                 
+            } else if (response.outofstock) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Out Of Stock!'
+                  })
+                id=2+response.pid
+                document.getElementById(id).disabled=true
             } else {
                 // document.getElementById(productid).value = parseInt(quantity) + parseInt(value)
                 // document.getElementById(pid).innerHTML=parseInt(currentval)+parseInt(price)
