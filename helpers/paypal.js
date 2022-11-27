@@ -15,8 +15,8 @@ module.exports = {
           payment_method: "paypal",
         },
         redirect_urls: {
-          return_url: "http://localhost:3000/paypalsuccess",
-          cancel_url: "http://localhost:3000/paymentfailed",
+          return_url: "http://shopmax.tk/paypalsuccess",
+          cancel_url: "http://shopmax.tk/paymentfailed",
         },
         transactions: [
           {
