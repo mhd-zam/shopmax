@@ -22,7 +22,6 @@ module.exports = {
     Razorpay.evaluatepayment(req.body)
       .then(() => {
         userhelper.changestatus(req.body["order[receipt]"]).then(() => {
-          console.log('hfdkjhgdsahjhg');
           res.json({ status: true });
         });
       })

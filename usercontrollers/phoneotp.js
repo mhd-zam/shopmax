@@ -47,7 +47,7 @@ const otppageget = (req, res) => {
 
 const otppagepost = (req,res)=>{
     var arr= Object.values(req.body)
-    var otp= arr.toString().replaceAll(',','');
+    var otp= arr.toString().replace(/,/g,'');
     console.log(otp)
     client
     .verify

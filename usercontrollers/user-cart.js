@@ -16,8 +16,10 @@ const deletecart = async (req, res, next) => {
    
    if (coupon) {
       await couponhelper.insertcoupon2(req.session.orderid, coupon)
-      await couponhelper.usercoupon(req.session.userdata._id,coupon.Couponcode)
+      await couponhelper.usercoupon(req.session.userdata._id, coupon.Couponcode)
    }
+   req.session.coupon = null
+   coupon=null
     db.get().collection(collections.CART).deleteOne({ user: ObjectID(id) }).then(() => {
         res.render('user/thankyou',{user})
    })
