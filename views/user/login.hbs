@@ -6,6 +6,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+::placeholder {
+  color: rgb(246, 240, 240);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: rgb(248, 246, 246);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: rgb(250, 247, 247);
+}
+</style>
 </head>
 <body>
 	
@@ -15,7 +29,7 @@
 			<form onsubmit="return validate()" action="/login" method="post">
 				<img  src="/user/images/sitelogo.jpg">
 				<h2 class="title">Login</h2>
-				<span style="color: red;">{{error}}</span>
+				<span style="color: rgb(244, 238, 238);">{{error}}</span>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-lock"></i>
@@ -31,8 +45,8 @@
            		    	<i class="fas fa-lock"></i>
            		   </div>
            		   <div class="div">
-						<input type="text" id="password" class="input" name="password" placeholder="Password">
-						<span id="error2" style="color: red;font-size: x-small;float: left; "></span>
+						<input type="password" id="password" class="input" name="password" placeholder="Password">
+						<span id="error2" style="color: rgb(236, 238, 245);font-size: x-small;float: left; "></span>
             	   </div>
             	</div>
             	<input type="submit" class="btn" value="Login">

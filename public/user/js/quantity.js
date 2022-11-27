@@ -1,5 +1,9 @@
 function quantity(cartid, productid,value,pid,price) {
     let quantity = parseInt(document.getElementById(productid).value)
+    let minusid=3+productid
+    document.getElementById(minusid).disabled = true
+    let plusid=2+productid
+    document.getElementById(plusid).disabled=true
     let currentval = parseInt(document.getElementById(pid).innerHTML)
     document.getElementById('cpbtn').disabled = false;
     document.getElementById('cpbtn').style.opacity=100
@@ -17,23 +21,20 @@ function quantity(cartid, productid,value,pid,price) {
         type: "post",
         success: (response) => {
             if (response.removed) {
-                swal({
-                    title: "Product Removed!",
-                    text: "",
-                    icon: "success",
-                    button: "Ok",
-                }).then(() => {
-                    $("#val2").load(window.location.href + " #val2");
-                })
-                
+                let id=3+productid
+                document.getElementById(id).disabled = true
+                let plusid=2+productid
+              document.getElementById(plusid).disabled=false
             } else if (response.outofstock) {
+                let plusid=2+response.pid
+                document.getElementById(plusid).disabled = true
+                 let minusid=3+productid
+                document.getElementById(minusid).disabled = false
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Out Of Stock!'
-                  })
-                id=2+response.pid
-                document.getElementById(id).disabled=true
+                })
             } else {
                 // document.getElementById(productid).value = parseInt(quantity) + parseInt(value)
                 // document.getElementById(pid).innerHTML=parseInt(currentval)+parseInt(price)

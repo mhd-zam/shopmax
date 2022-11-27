@@ -7,9 +7,7 @@ paypal.configure({
 });
 module.exports = {
   paypalpayment: (order, totalall) => {
-    console.log(order);
-    console.log(totalall);
-
+   totalall=parseInt(totalall)
     return new Promise((resolve, reject) => {
       var create_payment_json = {
         intent: "sale",
@@ -47,7 +45,7 @@ module.exports = {
   paypalconfirmation: (req, res, next) => {
     const payerId = req.query.PayerID;
     const paymentId = req.query.paymentId;
-    const total = req.session.total;
+    const total = parseInt(req.session.total) 
     const execute_payment_json = {
       payer_id: payerId,
       transactions: [

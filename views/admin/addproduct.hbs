@@ -100,21 +100,22 @@
     <div class="col-md-12 ">
       <div class="contract" style="margin: 30%; margin-top: 15%;">
         <h1 style="text-align: center;">Add Product</h1>
+         <h4 style="text-align: center;" style="color: red;">{{err}}</h4>
         {{#each data}}
         <input  type="text" hidden  id="{{this.category}}" value="{{this.discount}}">
         {{/each}}
         <form action="/admin/addproduct" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <input type="text" name="brand" class="form-control" placeholder="Brand Name">
+            <input type="text" name="brand" class="form-control" placeholder="Brand Name" required>
           </div>
           <div class="form-group">
-            <input type="text" name="product" class="form-control" placeholder="Product Name">
+            <input type="text" name="product" class="form-control" placeholder="Product Name" required>
           </div>
           <div class="form-group">
-            <input type="text" name="description" class="form-control" placeholder="Description">
+            <input type="text" name="description" class="form-control" placeholder="Description" required>
           </div>
             <div class="form-group">
-            <input name="stock"  type="text" id="" class="form-control" placeholder="stock quantity">
+            <input name="stock"  type="text" id="" class="form-control" placeholder="stock quantity" required>
           </div>
           <div class="form-group">
             <input name="price"  type="text" id="price" class="form-control" placeholder="Price">
@@ -129,13 +130,13 @@
           <div class="form-group">
             <label for="offerpercentage">product offer</label>
             <input id="percentage" oninput="find()" readonly name="offerpercentage" value="0" type="number" class="form-control"
-              placeholder="Offer percentage">
+              placeholder="Offer percentage" >
           </div>
           <div class="form-group">
             <div class="form-group">
                 <label for="offerprice">Offer price</label>
               <input name="offerprice" id="offer" readonly type="text" value="0" class="form-control"
-                placeholder="Offer Price">
+                placeholder="Offer Price" required>
             </div>
           </div>
           <div class=" mb-4">

@@ -1,4 +1,4 @@
-window.onload(cartnum())
+
 function cartnum(){
   $.ajax({
     url:'/cartcount',
@@ -11,6 +11,4 @@ function cartnum(){
   })
 }
 
-function wishlistnum(){
-
-}
+window.onload=cartnum()

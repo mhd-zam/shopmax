@@ -1,5 +1,4 @@
 var userhelper = require('../helpers/users-helper')
-const config=require('../config/twilio');
 require('dotenv').config()
 const ServiceID = process.env.SERVICEID
 const accountSID = process.env.ACCOUNTSID
@@ -10,10 +9,11 @@ const client = require('twilio')(accountSID,authToken)
 const phonenumberget = (req,res)=>{
     let message=req.session.message
     res.render('user/otp-phone',{message})
-    message=''
+  message = ''
+  req.session.message=''
 } 
 
-const phonenumberpost = (req,res)=>{
+const phonenumberpost = (req, res) => {
     req.session.ph=req.body.pname
     userhelper.doOTP(req.body.pname).then((response)=>{
       if(response.status){

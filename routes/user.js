@@ -87,8 +87,8 @@ router.route("/wishlist").get(insideverify, async (req, res) => {
   let orderdetail = await userwishlist.getwishlist(req.session.userdata._id);
 
   console.log(orderdetail);
-
-  res.render("user/wishlist", { orderdetail });
+  let user=req.session.username
+  res.render("user/wishlist", { orderdetail ,user});
 });
 
 //user page//
@@ -99,7 +99,8 @@ router.route("/updateuser").post(profile.updateuser);
 router.route("/wallet").get(insideverify, async (req, res) => {
   let userid = req.session.userdata._id;
   let wallet = await useracct.userwallet(userid);
-  res.render("user/wallet", { wallet });
+  let user=req.session.username
+  res.render("user/wallet", { wallet,user });
 });
 
 router.route("/changepassword").post(profile.changepassword);

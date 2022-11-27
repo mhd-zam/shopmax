@@ -8,16 +8,12 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
   <link rel="stylesheet" href="/user/fonts/icomoon/style.css">
-
   <link rel="stylesheet" href="/user/stylesheet/bootstrap.min.css">
   <link rel="stylesheet" href="/user/stylesheet/magnific-popup.css">
   <link rel="stylesheet" href="/user/stylesheet/jquery-ui.css">
   <link rel="stylesheet" href="/user/stylesheet/owl.carousel.min.css">
   <link rel="stylesheet" href="/user/stylesheet/owl.theme.default.min.css">
-
-
   <link rel="stylesheet" href="/user/stylesheet/aos.css">
-
   <link rel="stylesheet" href="/user/stylesheet/style.css">
 <style>
   .center {
@@ -37,11 +33,11 @@
 
 
     <div class="site-section">
-      <div  class="container">
+      <div id="val3" class="container">
         <div class="row mb-5">
-          <div id="val2" class="col-md-12">
-            <div  class="site-blocks-table">
-              <table class="table table-bordered">
+          <div  class="col-md-12">
+            <div  id="val2"  class="site-blocks-table">
+              <table   class="table table-bordered">
                 {{#if product.empty}}
                 <thead>
                   <tr>
@@ -75,7 +71,7 @@
 
                       <div class="input-group mb-3" style="max-width: 120px;">
                         <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary"
+                          <button id='3{{this.product._id}}' class="btn btn-outline-primary"
                             onclick="quantity('{{this._id}}','{{this.product._id}}',-1,'1{{this.product._id}}',-{{this.product.offerprice}})"
                             type="button">&minus;</button>
                         </div>
@@ -112,8 +108,8 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-6">
+        <div  class="row">
+          <div  class="col-md-6">
             <div class="row mb-5">
             </div>
            {{#if product.empty}}
@@ -149,6 +145,12 @@
                 </div>
                 <div id="val1" class="row mb-5">
                   <div class="col-md-6">
+                    <span style="font-size:larger ;" class="text-black">Discount</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <span>₹</span> <strong id="disc" style="font-size:larger ;" class="text-black">0</strong>
+                  </div>
+                   <div class="col-md-6">
                     <span style="font-size:larger ;" class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
@@ -263,7 +265,8 @@
   <script src="/user/js/bootstrap.min.js"></script>
   <script src="/user/js/owl.carousel.min.js"></script>
   <script src="/user/js/jquery.magnific-popup.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  {{!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.13/sweetalert2.all.js"></script>
   <script src="/user/js/aos.js"></script>
   <script src="/user/js/main.js"></script>
   <script src="/user/js/remove.js"></script>
@@ -271,6 +274,7 @@
   <script src="/user/js/coupon.js"></script>
   <script>
     function check() {
+       document.getElementById('disc').innerHTML=0
        document.getElementById('err').innerHTML=null
       document.getElementById('cpbtn').disabled = false;
       document.getElementById('cpbtn').style.opacity = 100
@@ -285,7 +289,7 @@
   </script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <script src="/user/js/count.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.13/sweetalert2.all.js"></script>
+ 
 
 
 </body>

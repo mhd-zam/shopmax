@@ -36,8 +36,7 @@ const cartpage = async(req, res) => {
    let total;
    if (product.check) {
       product.empty=true
-      total = await userhelper.findtotal(req.session.userdata._id)
-      
+      total = await userhelper.findtotal(req.session.userdata._id) 
    }
    let user=req.session.username
    res.render('user/cart',{product,user,total})
@@ -46,11 +45,8 @@ const cartpage = async(req, res) => {
  const removecartproduct = (req, res) => {
    console.log('reached');
     let proid = req.query.id
-    console.log('dhdhfskjhdsfkjhkjfdhkjshkjhdsfkjs'); 
     let quantity=req.query.quantity
-    console.log(proid);
     let userid = req.session.userdata._id
-    console.log(userid);
     
    userhelper.removeproduct(proid,userid,quantity).then(() => {
      res.json({status:true})
@@ -60,6 +56,7 @@ const cartpage = async(req, res) => {
 
 const quantity = (req, res) => {
    userhelper.changequantity(req.body).then(async (response) => {
+      console.log(response);
       if (response.removed) {
          res.json(response)
       } else {
@@ -73,7 +70,6 @@ const quantity = (req, res) => {
 }
 
 const cartcount = (req, res) => {
-   console.log('*******************************************');
    
    userhelper.cartcount(req.session.userdata._id).then((count) => {
       res.json(count)

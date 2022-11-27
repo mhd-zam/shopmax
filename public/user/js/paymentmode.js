@@ -3,6 +3,7 @@
 
 $('#paymentmode').submit((e) => {
     e.preventDefault()
+    document.getElementById('order').style.backgroundColor='blue'
     $.ajax({
         url: '/payment',
         type: 'post',
@@ -20,7 +21,7 @@ $('#paymentmode').submit((e) => {
                 } else {
                     location.href='/success'
                 }
-            }else if(response) {
+            } else if (response) {
                 location.href=response
             }
             

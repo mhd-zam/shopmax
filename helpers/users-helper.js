@@ -1,9 +1,9 @@
-var db = require("../config/connection");
+const db = require("../config/connection");
 const bcrypt = require("bcrypt");
 const collections = require("../config/collections");
 const { CURSOR_FLAGS } = require("mongodb");
 const { response } = require("express");
-var ObjectID = require("mongodb").ObjectId;
+const ObjectID = require("mongodb").ObjectId;
 let referralCodeGenerator = require("referral-code-generator");
 const { disabled } = require("../app");
 
@@ -303,7 +303,7 @@ module.exports = {
       let user = await db
         .get()
         .collection(collections.CART)
-        .findOne({ user: ObjectID(userid), product: { $exists: true } });
+        .findOne({ user: ObjectID(userid) });
       if (user) {
         if (user.product.length > 0) {
           let usercart = await db
@@ -634,16 +634,8 @@ module.exports = {
     let increment = -(count)
       
       if (quantity == 1 && count == -1) {
-        db.get().collection(collections.PRODUCT).updateOne({_id: ObjectID(pid)},{$inc:{stock:increment}})
-        db.get()
-          .collection(collections.CART)
-          .updateOne(
-            { _id: ObjectID(cid) },
-            { $pull: { product: { proid: ObjectID(pid) } } }
-          )
-          .then((response) => {
-            resolve({ removed: true });
-          });
+        
+        resolve({ removed: true })
       } else {
         if (stockcount <= 0 && count==1) {
           let obj={pid:product._id,outofstock:true}
@@ -742,6 +734,7 @@ module.exports = {
           },
         ])
         .toArray();
+      console.log(total);
       resolve(total[0].gtotal);
     });
   },
@@ -990,8 +983,13 @@ module.exports = {
   cartcount: (uid) => {
     return new Promise((resolve, reject) => {
       db.get().collection(collections.CART).findOne({ user: ObjectID(uid) }).then((item) => {
-        let count = item.product.length
-       resolve(count)
+        if (item) {
+          let count = item.product.length
+          resolve(count)
+        } else {
+          resolve(0)
+        }
+       
     })
   })
 }

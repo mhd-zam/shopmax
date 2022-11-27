@@ -32,21 +32,22 @@
         <div class="col-md-12 ">
             <div class="contract" style="margin: 30%; margin-top: 15%;">
                 <h1 style="text-align: center;">Add Coupon</h1>
+                 <h5 id="err" style="text-align: center;color: red;"></h5>
                 <form id="coupon">
                     <div class="form-group">
-                        <input type="text"  name="Couponcode" class="form-control" placeholder="Coupon code" oninput="this.value = this.value.toUpperCase()"/>
+                        <input type="text"  name="Couponcode" class="form-control" placeholder="Coupon code" oninput="this.value = this.value.toUpperCase()" required >
                     </div>
                     <div class="form-group">
-                        <input type="date" name="Expirydate" class="form-control" placeholder="Expiry date">
+                        <input type="date" name="Expirydate" class="form-control" placeholder="Expiry date" required >
                     </div>
                     <div class="form-group">
-                        <input type="number" name="Percentage" id="discount" oninput="check()" class="form-control" placeholder="Offer Percentage">
+                        <input type="number" name="Percentage" id="discount" oninput="check()" class="form-control" placeholder="Offer Percentage" required>
                     </div>
                     <div class="form-group">
-                        <input type="number" name="MinimumAmt" class="form-control" placeholder="Minimum Amt">
+                        <input type="number" name="MinimumAmt" class="form-control" placeholder="Minimum Amt" required >
                     </div>
                      <div class="form-group">
-                        <input type="number" name="MaximumAmt" class="form-control" placeholder="Maximum Amt">
+                        <input type="number" name="MaximumAmt" class="form-control" placeholder="upto" required >
                     </div>
                     <button type="submit" class="btn btn-primary">Add Coupon</button>
                 </form>

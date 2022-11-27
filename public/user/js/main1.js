@@ -103,18 +103,17 @@ function passwordvalidate(){
     }
 
 function validate(){
-    validateMobile();
-    validateEmail();
-    validateusername();
-    passwordvalidate();
-    validateRepass();
-    
+    validateEmail()
+    validateMobile()
+    validateusername()
+    passwordvalidate()
+    validateRepass()
     if(validateEmail() && validateMobile() && validateusername() && passwordvalidate() && validateRepass()){
     return true
     }else{
     return false
     }
-
+   
 }
 
 

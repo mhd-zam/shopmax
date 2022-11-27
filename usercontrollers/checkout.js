@@ -73,6 +73,9 @@ const checkoutpost = async (req, res) => {
         return accumulator + Value.price * Value.quantity;
       }, 0);
       req.session.total = value;
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+      console.log(req.session.total);
+      
       paypal.paypalpayment(orderitem, value).then((payment) => {
         for (let i = 0; i < payment.links.length; i++) {
           if (payment.links[i].rel === "approval_url") {

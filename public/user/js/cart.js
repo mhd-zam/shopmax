@@ -8,7 +8,7 @@ function cart(proid) {
                 icon: "success",
             }).then(() => {
                 cartnum()
-                $('#reload').load(window.location.href=' #reload')
+                $('#test').load(window.location.href+" #test")
               })
         }
     })

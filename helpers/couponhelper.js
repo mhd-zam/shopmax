@@ -15,7 +15,7 @@ module.exports = {
         .collection(collections.COUPON)
         .findOne({ Couponcode: data.Couponcode });
       if (check) {
-        reject();
+        reject({message:'coupon already exsist'});
       } else {
         db.get()
           .collection(collections.COUPON)
@@ -37,7 +37,6 @@ module.exports = {
     });
   },
   testcoupon: (data, id) => {
-    console.log("hssfd");
     console.log(data);
     return new Promise(async (resolve, reject) => {
       let value = await db

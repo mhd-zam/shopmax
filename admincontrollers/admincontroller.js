@@ -128,13 +128,12 @@ module.exports = {
   },
 
   addcouponpost: (req, res) => {
-    console.log(req.body);
       addcoupon(req.body)
       .then(() => {
         res.json({ status: true });
       })
-      .catch(() => {
-        res.json({ status: true });
+      .catch((response) => {
+        res.json(response);
       });
   },
   product: function (req, res, next) {
@@ -144,7 +143,9 @@ module.exports = {
   },
   addproduct: function (req, res, next) {
     getcategory().then((data) => {
-      res.render("admin/Addproduct", { data });
+      let err=req.session.error
+      res.render("admin/addproduct", { data, err });
+      req.session.error=null
     });
   },
 
@@ -161,6 +162,7 @@ module.exports = {
         res.redirect("/admin/product");
       });
     } else {
+       req.session.error='3 images required'
       res.redirect("/admin/addproduct");
     }
   },
@@ -246,6 +248,7 @@ module.exports = {
   addcategory: (req, res) => {
     let err = req.session.err;
     res.render("admin/categoryadd", { err });
+    req.session.err=null
   },
   addcategorypost: (req, res) => {
     createcategory(req.body)
@@ -310,17 +313,24 @@ module.exports = {
     }
   },
   addbanner: (req, res) => {
-    res.render("admin/addbanner");
+    let err=req.session.bannererror
+    res.render("admin/addbanner",{err});
+    req.session.bannererror=null
   },
   addbannerpost: (req, res) => {
-    console.log(req.files);
-    let image = req.files.map((value, index, array) => {
-      return value.filename;
-    });
-    req.body.imagefile = image;
-    bannersubmit(req.body).then(() => {
-      res.redirect("/admin/banner");
-    });
+    if (req.files.length == 3) {
+      let image = req.files.map((value, index, array) => {
+        return value.filename;
+      });
+      req.body.imagefile = image;
+      bannersubmit(req.body).then(() => {
+        res.redirect("/admin/banner");
+      });
+    } else {
+      req.session.bannererror='3 image required'
+      res.redirect('/admin/addbanner')
+    }
+   
   },
   orderpage: async (req, res) => {
     let variable = await findorder();

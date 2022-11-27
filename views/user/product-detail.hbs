@@ -63,9 +63,9 @@
 </head>
 
 <body  class="animsition">
-	<div class="site-wrap">
+	<div  class="site-wrap">
 		{{>userheader}}
-		<section class="sec-product-detail bg0 p-t-65 p-b-60">
+		<section id="reload" class="sec-product-detail bg0 p-t-65 p-b-60">
 			<div  class="container">
 				<div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
@@ -144,14 +144,14 @@
 							<!--  -->
 							<div  class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10"  >
-									<div id="reload" class="size-204 flex-w flex-m respon6-next">
+									<div id="test" class="size-204 flex-w flex-m respon6-next">
 
 										{{#if user}}
 										{{#if check}}
 										{{#if data.stockempty}}
 										<h2 style="color: RED;float: inline-start;">Out Of Stock</h2>
 										{{else}}
-										<button onclick="cart('{{data._id}}')"
+										<button  onclick="cart('{{data._id}}')"
 											class="flex-c-m stext-101 cl0 size-101 bg1 bg-success bor1 hov-btn1 p-lr-15 trans-04 ">Add
 											To Cart</button>
 										{{/if}}
