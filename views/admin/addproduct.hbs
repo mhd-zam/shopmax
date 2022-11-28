@@ -100,9 +100,9 @@
     <div class="col-md-12 ">
       <div class="contract" style="margin: 30%; margin-top: 15%;">
         <h1 style="text-align: center;">Add Product</h1>
-         <h4 style="text-align: center;" style="color: red;">{{err}}</h4>
+        <h4 style="text-align: center;" style="color: red;">{{err}}</h4>
         {{#each data}}
-        <input  type="text" hidden  id="{{this.category}}" value="{{this.discount}}">
+        <input type="text" hidden id="{{this.category}}" value="{{this.discount}}">
         {{/each}}
         <form action="/admin/addproduct" method="post" enctype="multipart/form-data">
           <div class="form-group">
@@ -114,13 +114,13 @@
           <div class="form-group">
             <input type="text" name="description" class="form-control" placeholder="Description" required>
           </div>
-            <div class="form-group">
-            <input name="stock"  type="text" id="" class="form-control" placeholder="stock quantity" required>
+          <div class="form-group">
+            <input name="stock" type="number" id="" class="form-control" placeholder="stock quantity" required>
           </div>
           <div class="form-group">
-            <input name="price"  type="text" id="price" class="form-control" placeholder="Price">
+            <input name="price" type="number" id="price" class="form-control" placeholder="Price">
           </div>
-          <select name="category" onchange="find()" id="sel" class="custom-select custom-select-md mb-3" required >
+          <select name="category" onchange="find()" id="sel" class="custom-select custom-select-md mb-3" required>
             <option> Category</option>
             {{#each data}}
             <option value={{this.category}}>{{this.category}}</option>
@@ -129,13 +129,13 @@
 
           <div class="form-group">
             <label for="offerpercentage">product offer</label>
-            <input id="percentage" oninput="find()" readonly name="offerpercentage" value="0" type="number" class="form-control"
-              placeholder="Offer percentage" >
+            <input id="percentage" oninput="find()" readonly name="offerpercentage" value="0" type="number"
+              class="form-control" placeholder="Offer percentage">
           </div>
           <div class="form-group">
             <div class="form-group">
-                <label for="offerprice">Offer price</label>
-              <input name="offerprice" id="offer" readonly type="text" value="0" class="form-control"
+              <label for="offerprice">Offer price</label>
+              <input name="offerprice" id="offer" readonly type="number" value="0" class="form-control"
                 placeholder="Offer Price" required>
             </div>
           </div>
@@ -285,22 +285,21 @@
 
   <script>
     function find() {
-      document.getElementById('percentage').readOnly = false;
       let discount = parseInt(document.getElementById('percentage').value)
-      let category = document.getElementById('sel').value
-      let percentage = parseInt(document.getElementById(category).value)
-      let total = percentage + discount
-      let offer = parseInt(document.getElementById('price').value)
-      document.getElementById('offer').value = offer - ((offer * total) / 100)
-      if (discount >= 100 ) {
-        document.getElementById('offer').value = offer
+      if (discount >= 100) {
+        document.getElementById('percentage').value = 0
+        document.getElementById('offer').value = 0
+      } else {
+        document.getElementById('percentage').readOnly = false;
+        let category = document.getElementById('sel').value
+        let percentage = parseInt(document.getElementById(category).value)
+        let total = percentage + discount
+        let offer = parseInt(document.getElementById('price').value)
+        document.getElementById('offer').value = offer - ((offer * total) / 100)
       }
-    }
-
-    function catdiscount() {
-
 
     }
+
 
   </script>
 </body>
