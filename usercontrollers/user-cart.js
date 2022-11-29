@@ -2,7 +2,6 @@ var db = require('../config/connection')
 var ObjectID = require('mongodb').ObjectId
 const collections = require('../config/collections');
 var userhelper = require('../helpers/users-helper');
-const usercartHelper = require('../helpers/usercart-helper');
 const couponhelper = require('../helpers/couponhelper');
 
  

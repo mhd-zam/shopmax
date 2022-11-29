@@ -1,8 +1,6 @@
 const uploadFilesMiddleware = require("../usercontrollers/multer");
 const db = require("../config/connection");
 
-const { response } = require("../app");
-
 const multipleUpload = async (req, res, next) => {
   try {
     await uploadFilesMiddleware(req, res);

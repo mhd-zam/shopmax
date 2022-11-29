@@ -1,11 +1,8 @@
 const db = require("../config/connection");
 const bcrypt = require("bcrypt");
 const collections = require("../config/collections");
-const { CURSOR_FLAGS } = require("mongodb");
-const { response } = require("express");
 const ObjectID = require("mongodb").ObjectId;
 let referralCodeGenerator = require("referral-code-generator");
-const { disabled } = require("../app");
 
 module.exports = {
   doSignup: (userdata) => {

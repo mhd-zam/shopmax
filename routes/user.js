@@ -10,7 +10,6 @@ var payment = require("../usercontrollers/payment");
 var userhelper = require("../helpers/users-helper");
 var cart = require("../usercontrollers/user-cart");
 var check = require("../usercontrollers/checkout");
-const session = require("express-session");
 const paypal = require("../helpers/paypal");
 const profile = require("../usercontrollers/profile");
 const couponhelper = require("../helpers/couponhelper");

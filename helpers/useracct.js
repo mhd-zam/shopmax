@@ -1,8 +1,6 @@
 var db = require("../config/connection");
 const bcrypt = require("bcrypt");
 const collections = require("../config/collections");
-const { CURSOR_FLAGS } = require("mongodb");
-const { response } = require("express");
 var ObjectID = require("mongodb").ObjectId;
 
 module.exports = {
